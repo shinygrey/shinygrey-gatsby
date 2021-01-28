@@ -1,6 +1,6 @@
 {
-  "name": "shiny-grey",
-  "version": "1.0.0",
+  "name": "shinygrey",
+  "version": "0.0.1",
   "private": true,
   "description": "Shiny Grey",
   "author": "shinygrey",
@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "gatsby": "^2.26.1",
+    "gatsby-plugin-sharp": "^2.13.3",
     "gatsby-source-wordpress-experimental": "^7.0.3",
+    "gatsby-transformer-sharp": "^2.11.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
