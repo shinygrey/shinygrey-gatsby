@@ -1,0 +1,90 @@
+nav>a{
+	text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em #666f7c;
+	font-size: 22px;
+	vertical-align: middle!important;
+}
+
+#navbartop a:hover{
+	text-shadow: 1px 1px 2px black, 0 0 0.5em white, 0 0 0.2em #CfDEF5;
+	color: #666f7c;
+	font-size: 22px;
+}
+
+#navoffcanvas{
+	visibility: hidden;
+	height: 0%;
+	position: fixed;
+	width: 100%;
+	opacity:0;
+	z-index: 9;
+	margin: -0.8em -1em 0 -1em;
+	flex-direction: column;
+	-webkit-transition: opacity .35s, visibility .35s, height .35s;
+	transition: opacity .35s, visibility .35s, height .35s;
+}
+
+#navoffcanvas>a{
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: opacity 2s;
+	transition: opacity 2s;
+}
+
+#navoffcanvas.active{
+	visibility: visible;
+	height: 100%;
+	opacity:0.9;
+}
+#navoffcanvas.active>a{
+	visibility: visible;
+	opacity: 1;
+}
+
+a.nav-link{text-decoration:none;}
+a.nav-link:hover, a.nav-link.active{
+	background-color: #fff !important;
+	text-decoration-style:none;
+}
+
+#navToggleButton {
+	background: inherit;
+	position: relative;
+	height: 90%;
+	width: 1.5em;
+	right: 5%;
+	top: 25%;
+	cursor: pointer;
+	z-index: 9999;
+	-webkit-transition: opacity .25s ease;
+	transition: opacity .25s ease;
+}
+
+#navToggleButton>span {
+	background: currentColor;
+	border: none;
+	height: 5%;
+	width: 100%;
+	position: absolute;
+	
+	-webkit-transition: all .35s ease;
+	transition: all .35s ease;
+	cursor: pointer;
+}
+#navAnimatedButtonTop{top: 0px;}
+#navAnimatedButtonMiddle{top: 8px;}
+#navAnimatedButtonBottom{top: 16px;}
+
+#navToggleButton.active>#navAnimatedButtonTop{
+	-webkit-transform: translateY(8px) translateX(0) rotate(45deg);
+	transform: translateY(8px) translateX(0) rotate(45deg);
+	background: currentColor;
+}
+#navToggleButton.active>#navAnimatedButtonMiddle {
+	opacity: 0;
+	background: currentColor;
+}
+#navToggleButton.active>#navAnimatedButtonBottom {
+	-webkit-transform: translateY(-8px) translateX(0) rotate(-45deg);
+	transform: translateY(-8px) translateX(0) rotate(-45deg);
+	background: currentColor;
+}
