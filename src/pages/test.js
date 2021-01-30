@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby";
 import ShinyGreyLayout from '../components/Layout';
 
 export const testQuery = graphql`query TestPage {
@@ -12,8 +12,8 @@ export const testQuery = graphql`query TestPage {
 	}
 }`;
 
-export default function TestPage({data}) {
-	const propsKeys = Object.keys({data});
+export default function TestPage(props) {
+	const keys = Object.keys(props);
 
 	return (<ShinyGreyLayout>
 		<img
@@ -31,16 +31,17 @@ export default function TestPage({data}) {
 			<span role="img" aria-label="Party popper emojis">
 			</span>
 		</h1>
+
 		<section>
-			<h4>API Exploration</h4>
+			<h4 className="text-lg text-sgdark">API Exploration</h4>
+			<p>What is passed to data?</p>
 			<samp>
 				<ul>
-				<li>{propsKeys.map(key => {
-					return <span key={key}>{key} </span>
-				})}</li>
+					{keys.map(key => <li key={key}>{typeof props[key]} <b>{key}</b> </li>)}
 				</ul>
 			</samp>
 		</section>
+
 		<p>
 			Edit <code style={{
 				color: "#8A6534",
@@ -53,7 +54,7 @@ export default function TestPage({data}) {
 		</p>
 		<aside>
 			<ul>
-			{data.allWpPost.nodes.map((node) => (
+			{props.data.allWpPost.nodes.map((node) => (
 				<li key={node.slug}>
 					<Link to={'/posts/'+node.slug}>
 						{node.title}

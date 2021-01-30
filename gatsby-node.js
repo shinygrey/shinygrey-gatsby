@@ -2,6 +2,19 @@ const path = require(`path`);
 
 exports.createPages = ({ graphql, actions }) => {
 	return graphql(`query WpGraph {
+		wpMenu(locations: { eq: PRIMARY }) {
+			id
+			name
+			menuItems {
+				nodes {
+					id
+					label
+					title
+					path
+					parentId
+				}
+			}
+		}
 		allWpPage {
 			edges {
 				node {
@@ -24,10 +37,14 @@ exports.createPages = ({ graphql, actions }) => {
 	}`)
 	.then(result => {
 		result.data.allWpPage.edges.forEach(edge => {
+			const pageSlug = (!edge.node.isFrontPage ? edge.node.slug : '/');
 			actions.createPage({
-				path: edge.node.slug,
+				path: pageSlug,
 				component: path.resolve(`./src/templates/pages.js`),
-				context: {slug: edge.node.slug},
+				context: {
+					menu: result.data.wpMenu.menuItems.nodes,
+					slug: edge.node.slug
+				},
 			});
 		});
 
@@ -36,13 +53,15 @@ exports.createPages = ({ graphql, actions }) => {
 				path: '/posts/'+node.slug,
 				component: path.resolve(`./src/templates/blog-post.js`),
 				context: {
-				// This is the $slug variable
-				// passed to blog-post.js
 					slug: node.slug,
 				},
 			})
 		})
 	})
+};
+
+exports.onCreateNode = ({ node }) => {
+	//console.log(`Node created of type "${node.internal.type}"`)
 };
 
 
@@ -106,6 +125,3 @@ exports.createPages = async ({ graphql, actions }) => {
 	})
 };*/
 
-exports.onCreateNode = ({ node }) => {
-	//console.log(`Node created of type "${node.internal.type}"`)
-};

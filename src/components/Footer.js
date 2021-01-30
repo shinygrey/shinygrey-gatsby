@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Footer() {
-	return(	<footer className="flex">{/* container-fluid text-center mt-5 */}
+	return(	<footer className="sgt-flex">{/* container-fluid text-center mt-5 */}
 		<button
 			tabIndex="0"
 			data-toggle="popover"
@@ -28,8 +28,16 @@ export default function Footer() {
 		</a>
 		<br />
 		&copy; Shiny Grey Ltd 2019 | <a className="" href="/privacypolicy">Privacy Policy</a><br />
-		<span className="d-sm-none">&middot;</span><span className="d-none d-sm-inline d-md-none">&middot;&middot;</span><span className="d-none d-md-inline d-lg-none">&middot;&middot;&middot;</span><span className="d-none d-lg-inline d-xl-none">&middot;&middot;&middot;&middot;</span><span className="d-none d-xl-inline">&middot;&middot;&middot;&middot;&middot;</span>
+		<span className="d-sm-none">&middot;</span>
+		<span className="d-none d-sm-inline d-md-none">&middot;&middot;</span>
+		<span className="d-none d-md-inline d-lg-none">&middot;&middot;&middot;</span>
+		<span className="d-none d-lg-inline d-xl-none">&middot;&middot;&middot;&middot;</span>
+		<span className="d-none d-xl-inline">&middot;&middot;&middot;&middot;&middot;</span>
 		Company number 11318007
-		<span className="d-sm-none">&middot;</span><span className="d-none d-sm-inline d-md-none">&middot;&middot;</span><span className="d-none d-md-inline d-lg-none">&middot;&middot;&middot;</span><span className="d-none d-lg-inline d-xl-none">&middot;&middot;&middot;&middot;</span><span className="d-none d-xl-inline">&middot;&middot;&middot;&middot;&middot;</span>
+		<span className="d-sm-none">&middot;</span>
+		<span className="d-none d-sm-inline d-md-none">&middot;&middot;</span>
+		<span className="d-none d-md-inline d-lg-none">&middot;&middot;&middot;</span>
+		<span className="d-none d-lg-inline d-xl-none">&middot;&middot;&middot;&middot;</span>
+		<span className="d-none d-xl-inline">&middot;&middot;&middot;&middot;&middot;</span>
 	</footer>);
 }

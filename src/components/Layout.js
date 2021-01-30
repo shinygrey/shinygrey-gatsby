@@ -7,7 +7,7 @@ import MenuModal from "./MenuModal";
 
 const backdropClasses = " backdrop";
 
-export default function ShinyGreyLayout({ children, bodyClass }) {
+export default function ShinyGreyLayout({ children, bodyClass, menu }) {
 	const [backdropActive, setBackdropActive] = useState(false);
 
 	const toggleBackdrop = (e, active) => {
@@ -15,8 +15,7 @@ export default function ShinyGreyLayout({ children, bodyClass }) {
 		setBackdropActive(active);
 	}
 
-	return (
-		<main
+	return(<div
 			id={"GatsbyBody"}
 			className={
 				bodyClass +
@@ -24,7 +23,7 @@ export default function ShinyGreyLayout({ children, bodyClass }) {
 				(backdropActive ? backdropClasses : "")
 			}
 		>
-		<Header toggleBackdrop={toggleBackdrop} />
+		<Header toggleBackdrop={toggleBackdrop} menu={menu} />
 
 		<MenuModal isActive={backdropActive} toggleBackdrop={toggleBackdrop} />
 
@@ -35,6 +34,5 @@ export default function ShinyGreyLayout({ children, bodyClass }) {
 		<FooterMenusWidgets />
 
 		<Footer />
-		</main>
-	);
+	</div>);
 }

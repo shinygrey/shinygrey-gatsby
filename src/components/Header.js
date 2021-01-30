@@ -1,12 +1,35 @@
 import React, { Fragment } from "react"
+import { Link } from "gatsby";
 
-export default function Header() {
-	return(<NavMenu />);
+export default function Header(props) {
+	return(<Fragment>
+		<NavMenu menu={props.menu} />
+	</Fragment>);
 }
 
-function NavMenu() {
+function NavMenu({menu}) {
+	const menuItems = (!menu ? [] : menu.filter(item => item.path !== "/"));
 	return(<Fragment>
-	<nav id="navbartop" className="nav col fixed-top pr-0" style={{flexWrap: "nowrap"}}>
+		<nav id="navbartop" className="sgt-text-sglight sgt-bg-gradient-to-br sgt-from-sgdark sgt-to-black">{/* nav col fixed-top pr-0 */}
+			<ul className="sgt-list-none sgt-flex">
+				<li className="sgt-align-middle sgt-py-5">
+					<Link to='/'>
+						<svg xmlns="http://www.w3.org/2000/svg" height="2.5em" viewBox="0 0 24 24" width="2.5em"><path d="M0 0h24v24H0z" fill="none" /><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+					</Link>
+				</li>
+				{menuItems.map(item => {
+					return <li key={item.id} className="sgt-py-5 sgt-px-3">
+						<Link to={item.path}>
+							<span className="sgt-align-middle sgt-text-2xl sgt-text-shadow">{item.label}</span>
+						</Link>
+					</li>
+				})}
+			</ul>
+		</nav>
+	</Fragment>);
+}
+
+/*
 		<a className="nav-link" href="/">
 			<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
 				<path d="M0 0h24v24H0z" fill="none" />
@@ -36,4 +59,4 @@ function NavMenu() {
 		<a href="/blog" className="nav-link pl-5"><span className="align-middle">Blog</span></a>
 	</nav>
 	</Fragment>);
-}
+	 */
