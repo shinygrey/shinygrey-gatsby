@@ -16,10 +16,15 @@
   },
   "dependencies": {
     "gatsby": "^2.26.1",
+    "gatsby-plugin-postcss": "^3.6.0",
     "gatsby-plugin-sharp": "^2.13.3",
     "gatsby-source-wordpress-experimental": "^7.0.3",
     "gatsby-transformer-sharp": "^2.11.0",
+    "postcss": "^8.2.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^2.0.2"
   }
 }

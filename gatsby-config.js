@@ -9,5 +9,6 @@ module.exports = {
         url: "https://wp.shinygrey.com/graphql",
       },
     },
-  ],
+    'gatsby-plugin-postcss'
+  ]
 };
