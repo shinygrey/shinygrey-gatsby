@@ -1,4 +1,6 @@
 import React from "react";
+import { graphql } from "gatsby";
+
 import ShinyGreyLayout from "../components/Layout";
 
 export const query = graphql`
