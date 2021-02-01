@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Header from "./Header"; // eslint-disable-line no-unused-vars
 import Footer from "./Footer"; // eslint-disable-line no-unused-vars
 
@@ -7,7 +7,7 @@ import MenuModal from "./MenuModal";
 
 const backdropClasses = " backdrop";
 
-export default function ShinyGreyLayout({ children, bodyClass, menu }) {
+export default function ShinyGreyLayout({ children, bodyClass, menu, title }) {
 	const [backdropActive, setBackdropActive] = useState(false);
 
 	const toggleBackdrop = (e, active) => {
@@ -15,24 +15,27 @@ export default function ShinyGreyLayout({ children, bodyClass, menu }) {
 		setBackdropActive(active);
 	}
 
-	return(<div
+	return(<Fragment>
+		{(!title ? <Fragment /> : <title>{title}</title>)}
+		<div
 			id={"GatsbyBody"}
 			className={
 				bodyClass +
-				" showing-menu-modal showing-modal" +
+				" sgt-w-10/12 sm:sgt-w-9/12 md:sgt-w-8/12 sgt-mx-auto sgt-my-5 showing-menu-modal showing-modal" +
 				(backdropActive ? backdropClasses : "")
 			}
 		>
-		<Header toggleBackdrop={toggleBackdrop} menu={menu} />
+			<Header toggleBackdrop={toggleBackdrop} menu={menu} />
 
-		<MenuModal isActive={backdropActive} toggleBackdrop={toggleBackdrop} />
+			<MenuModal isActive={backdropActive} toggleBackdrop={toggleBackdrop} />
 
-		<main id="site-content" role="main">
-			{children}
-		</main>
+			<main id="site-content" role="main">
+				{children}
+			</main>
 
-		<FooterMenusWidgets />
+			<FooterMenusWidgets />
 
-		<Footer />
-	</div>);
+			<Footer />
+		</div>
+	</Fragment>);
 }

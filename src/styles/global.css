@@ -4,6 +4,39 @@
 
 @layer base {
 
+	.shinygrey-hero{
+		text-shadow: 0 0 3px white;
+		background: rgba(255,255,255,0.2);
+
+		border-radius: 20px;
+
+		padding: 0.5em;
+	}
+
+	.shinygrey-tag-cad{
+		@apply sgt-text-sgdark;
+		@apply sgt-border-2;
+		@apply sgt-border-dotted;
+		@apply sgt-border-sgdark;
+		@apply sgt-rounded-md;
+		@apply sgt-italic;
+		@apply sgt-p-1;
+		@apply sgt-inline-block;
+		@apply sgt-uppercase;
+	}
+
+	.shinygrey-tag-blog{
+		@apply sgt-font-serif;
+		@apply sgt-not-italic;
+	}
+
+	.shinygrey-tag-code:before{content: "\007B";}
+	.shinygrey-tag-code{
+		@apply sgt-font-mono;
+		@apply sgt-not-italic;
+	}
+	.shinygrey-tag-code:after{content: "\007D";}
+
 	.wp-block-columns{
 		@apply sgt-flex;
 	}
@@ -193,14 +226,18 @@
 	@media (min-width: 992px){.card-columns {column-count: 3;}}
 	
 	.card-text,.card-title,.card-link{color: #000000;}
-	
+
 	a:link,a:visited,a:active{color:inherit;}
 	a:hover{
 		color:inherit;
 		text-decoration:underline;
 		text-decoration-style:dotted;
 	}
-	
+	a:not(.nav-link){
+		@apply sgt-text-sgdark;
+		@apply sgt-font-medium;
+	}
+
 	.sg-size .card-img{font-size: 6em;}
 	.sg-size h5{font-size: 1.25rem;}
 	@media(min-width: 576px){
@@ -293,6 +330,7 @@
 		font-size: 2em;
 		width: 1.25em;
 		height: 1em;
+		@apply sgt-text-black;
 	}
 
 	footer button{

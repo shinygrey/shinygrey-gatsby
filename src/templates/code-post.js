@@ -16,9 +16,9 @@ query($id: String!) {
 export default function BlogPost({ data, pageContext }) {
 	const post = data.allWpPost.nodes[0];
 	return (
-		<ShinyGreyLayout menu={pageContext.menu} title="Shiny Grey / Post">
+		<ShinyGreyLayout menu={pageContext.menu} title="Shiny Grey / Code">
 		<div>
-			<h1>{post.title}</h1>
+			<h1><i className="shinygrey-tag-code">Code</i> {post.title}</h1>
 			<div dangerouslySetInnerHTML={{ __html: post.content }} />
 		</div>
 		</ShinyGreyLayout>

@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require(`path`);
 
 exports.createPages = ({ graphql, actions }) => {
@@ -5,58 +6,68 @@ exports.createPages = ({ graphql, actions }) => {
 		wpMenu(locations: { eq: PRIMARY }) {
 			id
 			name
-			menuItems {
-				nodes {
-					id
-					label
-					title
-					path
-					parentId
-				}
-			}
+			menuItems {nodes {id label title path parentId}}
 		}
 		allWpPage {
-			edges {
-				node {
-				id
-				slug
-				title
-				isFrontPage
-				isPostsPage
-				content
-				}
-			}
+			edges {node {id	slug title isFrontPage isPostsPage content}}
 		}
 		allWpPost(sort: { fields: [date] }) {
-			nodes {
-				title
-				excerpt
-				slug
-			}
+			nodes {title excerpt slug}
 		}
+		allWpCategory {edges {node {
+			id
+			name
+			slug
+			parent {id}
+			posts {
+				nodes {id title slug content}
+			}
+		}}}
 	}`)
 	.then(result => {
-		result.data.allWpPage.edges.forEach(edge => {
+		const { allWpCategory, allWpPage, allWpPost, wpMenu } = result.data;
+
+		allWpCategory.edges.forEach(edge => {
+			const categorySlug = edge.node.slug;
+			actions.createPage({
+				path: categorySlug,
+				component: path.resolve(`./src/templates/posts-page.js`),
+				context: {
+					menu: wpMenu.menuItems.nodes,
+					slug: categorySlug
+				},
+			});
+
+			const catTemplatePath = path.resolve(`./src/templates/${categorySlug}-post.js`);
+			const template = (
+				fs.existsSync(catTemplatePath)
+				? catTemplatePath
+				: path.resolve(`./src/templates/blog-post.js`)
+			);
+
+			edge.node.posts.nodes.forEach(post => {
+				actions.createPage({
+					path: `/${categorySlug}/${post.slug}`,
+					component: template,
+					context: {
+						menu: wpMenu.menuItems.nodes,
+						id: post.id,
+					},
+				})
+			})
+		});
+
+		allWpPage.edges.forEach(edge => {
 			const pageSlug = (!edge.node.isFrontPage ? edge.node.slug : '/');
 			actions.createPage({
 				path: pageSlug,
-				component: path.resolve(`./src/templates/pages.js`),
+				component: path.resolve(`./src/templates/page.js`),
 				context: {
-					menu: result.data.wpMenu.menuItems.nodes,
+					menu: wpMenu.menuItems.nodes,
 					slug: edge.node.slug
 				},
 			});
 		});
-
-		result.data.allWpPost.nodes.forEach(node => {
-			actions.createPage({
-				path: '/posts/'+node.slug,
-				component: path.resolve(`./src/templates/blog-post.js`),
-				context: {
-					slug: node.slug,
-				},
-			})
-		})
 	})
 };
 

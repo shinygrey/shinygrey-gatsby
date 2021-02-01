@@ -19,6 +19,6 @@ export default function Page({ data, pageContext }) {
 	const page = data.allWpPage.edges[0].node;
 	return(<ShinyGreyLayout menu={pageContext.menu}>
 		<title>{page.title}</title>
-		<div className="sgt-w-10/12 sm:sgt-w-9/12 md:sgt-w-8/12  sgt-mx-auto" dangerouslySetInnerHTML={{ __html: page.content }} />
+		<div dangerouslySetInnerHTML={{ __html: page.content }} />
 	</ShinyGreyLayout>);
 }
