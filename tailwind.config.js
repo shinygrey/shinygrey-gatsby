@@ -3,6 +3,12 @@ module.exports = {
 	corePlugins: {
 		preflight: false,   
 	},
+	purge: [
+		'./src/**/*.html',
+		'./src/templates/*.js',
+		'./src/components/*.js',
+		'./src/pages/*.js',
+	],
 	theme: {
 		extend: {
 			fontFamily: {
