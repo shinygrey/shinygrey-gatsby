@@ -20,6 +20,16 @@
 		@apply sgt-list-none;
 	}
 
+	.wp-block-latest-posts>li{
+		@apply sgt-border-sgdark;
+		@apply sgt-rounded-md;
+	}
+
+	.wp-block-latest-posts>li>a{
+		@apply sgt-text-sgdark;
+		@apply sgt-text-3xl;
+	}
+
 	.blocks-gallery-grid{
 		@apply sgt-list-none;
 		@apply sgt-flex;

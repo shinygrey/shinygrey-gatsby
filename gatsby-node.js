@@ -60,10 +60,11 @@ exports.createPages = ({ graphql, actions }) => {
 	})
 };
 
+/*
 exports.onCreateNode = ({ node }) => {
 	//console.log(`Node created of type "${node.internal.type}"`)
 };
-
+*/
 
 /*
 const { createFilePath } = require(`gatsby-source-filesystem`);
