@@ -3,6 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+
+	.wp-block-columns{
+		@apply sgt-flex;
+	}
+
+	.wp-block-column{
+		@apply sgt-flex-grow;
+	}
+
+	.has-text-align-center{
+		@apply sgt-text-center;
+	}
+
+	.wp-block-latest-posts{
+		@apply sgt-list-none;
+	}
+
+	.blocks-gallery-grid{
+		@apply sgt-list-none;
+		@apply sgt-flex;
+		@apply sgt-flex-wrap;
+	}
+
 	.sgc-width-inherit{
 		width: inherit;
 	}
