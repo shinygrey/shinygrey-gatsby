@@ -18,7 +18,7 @@ export default function BlogPost({ data, pageContext }) {
 	return (
 		<ShinyGreyLayout menu={pageContext.menu} title="Shiny Grey / Post">
 		<div>
-			<h1>{post.title}</h1>
+			<h1><i className="shinygrey-tag-blog">CAD</i> {post.title}</h1>
 			<div dangerouslySetInnerHTML={{ __html: post.content }} />
 		</div>
 		</ShinyGreyLayout>
