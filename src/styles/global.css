@@ -118,6 +118,8 @@
 		opacity: 1;
 	}
 
+	.sgc-home-link{width:82px;}
+
 	button.shinygrey-nav-toggle {
 		position: relative;
 		background-color: transparent;

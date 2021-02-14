@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "gatsby";
 
 export default function Header(props) {
@@ -7,15 +7,32 @@ export default function Header(props) {
 	</Fragment>);
 }
 
+function useCloseNavEvents(setOpen) {
+	useEffect(() => {
+		const closeNav = () => {
+			setOpen(false);
+		};
+		window.addEventListener('resize', closeNav);
+		window.addEventListener('scroll', closeNav);
+		return () => {
+			window.removeEventListener('resize', closeNav);
+			window.removeEventListener('scroll', closeNav);
+		}
+	}, [setOpen]);
+}
+
 function NavMenu({menu}) {
 	const [navOpen,setNavOpen] = useState(false);
 	const menuItems = (!menu ? [] : menu.filter(item => item.path !== "/"));
+
+	useCloseNavEvents(setNavOpen);
+
 	return(<nav
 		id="nav-bar-main"
 		className={`sgt-flex-nowrap nav col fixed-top sgt-pr-0${(!navOpen ? '' : ' active')}`}
 	>
 		<ul className="sgt-list-none sgt-pl-0 md:sgt-mt-0 sgt-flex sgt-flex-col md:sgt-flex-row sgt-w-11/12 md:sgt-w-auto">
-			<li>
+			<li className="sgc-home-link">
 				<Link className="sgt-block sgc-nav-link sgt-py-2 sgt-px-4" to="/">
 					<svg
 						version="1.1"
@@ -30,9 +47,9 @@ function NavMenu({menu}) {
 				</Link>
 			</li>
 		{menuItems.map(item => {
-			return(<li key={item.id} className="sgt-hidden md:sgt-block sgt-w-full">
+			return(<li key={item.id} className="sgt-hidden md:sgt-visible md:sgt-block sgt-w-full">
 				<Link to={item.path} className="sgt-block sgt-py-2 sgt-px-4 sgc-nav-link ">
-					<span className="align-middle sgt-transition-opacity sgt-opacity-0 sgt-duration-500 sgt-ease">{item.label}</span>
+					<span className="align-middle sgt-transition-opacity sgt-opacity-0 md:sgt-opacity-100 sgt-duration-500 sgt-ease">{item.label}</span>
 				</Link>
 			</li>);
 		})}
