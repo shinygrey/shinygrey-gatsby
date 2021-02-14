@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "gatsby";
 
 export default function Header(props) {
@@ -7,15 +7,32 @@ export default function Header(props) {
 	</Fragment>);
 }
 
+function useCloseNavEvents(setOpen) {
+	useEffect(() => {
+		const closeNav = () => {
+			setOpen(false);
+		};
+		window.addEventListener('resize', closeNav);
+		window.addEventListener('scroll', closeNav);
+		return () => {
+			window.removeEventListener('resize', closeNav);
+			window.removeEventListener('scroll', closeNav);
+		}
+	}, [setOpen]);
+}
+
 function NavMenu({menu}) {
 	const [navOpen,setNavOpen] = useState(false);
 	const menuItems = (!menu ? [] : menu.filter(item => item.path !== "/"));
+
+	useCloseNavEvents(setNavOpen);
+
 	return(<nav
 		id="nav-bar-main"
 		className={`sgt-flex-nowrap sgt-flex sgt-fixed sgt-inset-x-0 sgt-top-0 sgt-pr-0${(!navOpen ? '' : ' active')}`}
 	>
 		<ul className="sgt-list-none sgt-pl-0 md:sgt-mt-0 sgt-flex sgt-flex-col md:sgt-flex-row sgt-w-11/12 md:sgt-w-auto">
-			<li>
+			<li className="sgc-home-link">
 				<Link className="sgt-block sgc-nav-link sgt-py-2 sgt-px-4" to="/">
 					<svg
 						version="1.1"
@@ -30,13 +47,14 @@ function NavMenu({menu}) {
 				</Link>
 			</li>
 		{menuItems.map(item => {
-			return(<li key={item.id} className="sgt-invisible md:visible sgt-transition-all sgt-block sgt-w-full">
+			return(<li key={item.id} className="sgt-invisible md:sgt-visible sgt-transition-all md:sgt-block sgt-w-full">
 				<Link to={item.path} className="sgt-block sgt-py-2 sgt-px-4 sgc-nav-link ">
-					<span className="align-middle sgt-opacity-0 md:sgt-opacity-0 sgt-transition-opacity sgt-duration-700 sgt-ease-in-out">{item.label}</span>
-				</Link>{/* sgt-duration-500 sgt-transition-opacity  */}
+					<span className="align-middle sgt-transition-opacity sgt-opacity-0 md:sgt-opacity-100 sgt-duration-500 sgt-ease-in-out">{item.label}</span>
+				</Link>
 			</li>);
 		})}
 		</ul>
+
 		<button
 			className={`hover:sgt-text-sgdark hover:sgt-bg-white sgt-text-sglight shinygrey-nav-toggle sgt-border-none sgt-bg-opacity-100 sgt-cursor-pointer sgc-nav-link ml-auto sgt-block md:sgt-hidden${(!navOpen ? '' : ' active')}`}
 			onClick={() => {setNavOpen(!navOpen)}}

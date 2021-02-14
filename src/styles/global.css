@@ -113,6 +113,8 @@
 	#nav-bar-main.active > ul > li{@apply sgt-visible;}
 	#nav-bar-main.active > ul > li > a > span{opacity: 1;}
 
+	.sgc-home-link{width:82px;}
+
 	button.shinygrey-nav-toggle {
 		position: relative;
 		background-color: transparent;
