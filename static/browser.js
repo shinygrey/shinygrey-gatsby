@@ -5,7 +5,7 @@ if(document.readyState !== 'loading'){
 }
 
 function onShinyGreyDocumentLoad() {
-
+/*
 	var navToggleButton = document.querySelector('button.shinygrey-nav-toggle');
 	var navBarMain = document.getElementById('nav-bar-main');
 
@@ -17,7 +17,7 @@ function onShinyGreyDocumentLoad() {
 		navToggleButton.classList.remove('active');
 		navBarMain.classList.remove('active');
 	});
-
+*/
 	var cookieComponent = document.getElementById('cookie-component');
 	if(!!cookieComponent && cookieComponent.constructor.name === "HTMLDivElement"){
 		var cookieIndex = getCookieIndex();
@@ -66,7 +66,6 @@ function setMessageSadFace(cookieComponent) {
 	var img = document.createElement('img');
 	img.src = './sadface.svg';
 	cookieComponent.appendChild(img);
-	console.log('sad face');
 }
 
 function setShinyGreyCookieAndReload() {

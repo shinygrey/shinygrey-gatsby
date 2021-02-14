@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "gatsby";
 
 export default function Header(props) {
@@ -8,8 +8,12 @@ export default function Header(props) {
 }
 
 function NavMenu({menu}) {
+	const [navOpen,setNavOpen] = useState(false);
 	const menuItems = (!menu ? [] : menu.filter(item => item.path !== "/"));
-	return(<nav id="nav-bar-main" className="sgt-flex-nowrap nav col fixed-top sgt-pr-0">
+	return(<nav
+		id="nav-bar-main"
+		className={`sgt-flex-nowrap nav col fixed-top sgt-pr-0${(!navOpen ? '' : ' active')}`}
+	>
 		<ul className="sgt-list-none sgt-pl-0 md:sgt-mt-0 sgt-flex sgt-flex-col md:sgt-flex-row sgt-w-11/12 md:sgt-w-auto">
 			<li>
 				<Link className="sgt-block sgc-nav-link sgt-py-2 sgt-px-4" to="/">
@@ -25,14 +29,18 @@ function NavMenu({menu}) {
 					</svg>
 				</Link>
 			</li>
-
 		{menuItems.map(item => {
 			return(<li key={item.id} className="sgt-hidden md:sgt-block sgt-w-full">
-				<Link to={item.path} className="sgt-block sgt-py-2 sgt-px-4 sgc-nav-link "><span className="align-middle sgt-transition-opacity sgt-opacity-0 sgt-duration-500 sgt-ease">{item.label}</span></Link>
+				<Link to={item.path} className="sgt-block sgt-py-2 sgt-px-4 sgc-nav-link ">
+					<span className="align-middle sgt-transition-opacity sgt-opacity-0 sgt-duration-500 sgt-ease">{item.label}</span>
+				</Link>
 			</li>);
 		})}
 		</ul>
-		<button className="hover:sgt-text-sgdark hover:sgt-bg-white sgt-text-sglight shinygrey-nav-toggle sgt-border-none sgt-bg-opacity-100 sgt-cursor-pointer sgc-nav-link ml-auto sgt-block md:sgt-hidden">
+		<button
+			className={`hover:sgt-text-sgdark hover:sgt-bg-white sgt-text-sglight shinygrey-nav-toggle sgt-border-none sgt-bg-opacity-100 sgt-cursor-pointer sgc-nav-link ml-auto sgt-block md:sgt-hidden${(!navOpen ? '' : ' active')}`}
+			onClick={() => {setNavOpen(!navOpen)}}
+		>
 			<span></span>
 			<span></span>
 			<span></span>

@@ -20,7 +20,7 @@ export default function ShinyGreyLayout({ children, bodyClass, menu, title }) {
 		<div
 			id={"GatsbyBody"}
 			className={
-				bodyClass +
+				(!bodyClass ? '' : bodyClass) +
 				" sgt-w-10/12 sm:sgt-w-9/12 md:sgt-w-8/12 sgt-mx-auto sgt-my-5 showing-menu-modal showing-modal" +
 				(backdropActive ? backdropClasses : "")
 			}
