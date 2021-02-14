@@ -110,13 +110,8 @@
 		height: 60px;
 	}
 
-	#nav-bar-main.active > ul > li{
-		@apply sgt-block;
-	}
-
-	#nav-bar-main.active > ul > li > a > span{
-		opacity: 1;
-	}
+	#nav-bar-main.active > ul > li{@apply sgt-visible;}
+	#nav-bar-main.active > ul > li > a > span{opacity: 1;}
 
 	button.shinygrey-nav-toggle {
 		position: relative;

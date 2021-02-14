@@ -12,7 +12,7 @@ function NavMenu({menu}) {
 	const menuItems = (!menu ? [] : menu.filter(item => item.path !== "/"));
 	return(<nav
 		id="nav-bar-main"
-		className={`sgt-flex-nowrap nav col fixed-top sgt-pr-0${(!navOpen ? '' : ' active')}`}
+		className={`sgt-flex-nowrap sgt-flex sgt-fixed sgt-inset-x-0 sgt-top-0 sgt-pr-0${(!navOpen ? '' : ' active')}`}
 	>
 		<ul className="sgt-list-none sgt-pl-0 md:sgt-mt-0 sgt-flex sgt-flex-col md:sgt-flex-row sgt-w-11/12 md:sgt-w-auto">
 			<li>
@@ -30,10 +30,10 @@ function NavMenu({menu}) {
 				</Link>
 			</li>
 		{menuItems.map(item => {
-			return(<li key={item.id} className="sgt-hidden md:sgt-block sgt-w-full">
+			return(<li key={item.id} className="sgt-invisible md:visible sgt-transition-all sgt-block sgt-w-full">
 				<Link to={item.path} className="sgt-block sgt-py-2 sgt-px-4 sgc-nav-link ">
-					<span className="align-middle sgt-transition-opacity sgt-opacity-0 sgt-duration-500 sgt-ease">{item.label}</span>
-				</Link>
+					<span className="align-middle sgt-opacity-0 md:sgt-opacity-0 sgt-transition-opacity sgt-duration-700 sgt-ease-in-out">{item.label}</span>
+				</Link>{/* sgt-duration-500 sgt-transition-opacity  */}
 			</li>);
 		})}
 		</ul>
