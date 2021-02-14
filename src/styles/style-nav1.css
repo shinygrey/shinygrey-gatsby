@@ -4,7 +4,7 @@ nav>a{
 	vertical-align: middle!important;
 }
 
-#navbartop a:hover{
+#nav-bar-main a:hover{
 	text-shadow: 1px 1px 2px black, 0 0 0.5em white, 0 0 0.2em #CfDEF5;
 	color: #666f7c;
 	font-size: 22px;

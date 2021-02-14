@@ -5,7 +5,7 @@ import './src/styles/global.css';
 
 export const onClientEntry = () => {
 	window.onload = () => {
-		addScript('./browser.js');
+		addScript('/browser.js');
 	}
 }
 

@@ -5,6 +5,19 @@ if(document.readyState !== 'loading'){
 }
 
 function onShinyGreyDocumentLoad() {
+
+	var navToggleButton = document.querySelector('button.shinygrey-nav-toggle');
+	var navBarMain = document.getElementById('nav-bar-main');
+
+	navToggleButton.addEventListener('click',function() {
+		navToggleButton.classList.toggle('active');
+		navBarMain.classList.toggle('active');
+	});
+	window.addEventListener('resize', function() {
+		navToggleButton.classList.remove('active');
+		navBarMain.classList.remove('active');
+	});
+
 	var cookieComponent = document.getElementById('cookie-component');
 	if(!!cookieComponent && cookieComponent.constructor.name === "HTMLDivElement"){
 		var cookieIndex = getCookieIndex();
@@ -15,7 +28,6 @@ function onShinyGreyDocumentLoad() {
 			cookieYes.addEventListener('click', function() {
 				setShinyGreyCookieAndReload();
 			});
-			console.log(cookieYes.getAttribute('class'));
 			var cookieNo = document.getElementById('cookie-no');
 			cookieNo.addEventListener('click', function() {
 				setMessageSadFace(cookieComponent);
@@ -39,7 +51,7 @@ function getCookieIndex() {
 }
 
 function setMessageHasCookie(cookieComponent,rawCookie) {
-	var cookie = /ts:(\d+)&c:(\d{1,2})&fa:(\d)/.exec(rawCookie)
+	var cookie = /ts:(\d+)&c:(\d{1,2})&fa:(\d)/.exec(rawCookie);
 	var date = new Date(parseInt(cookie[1],10));
 
 	cookieComponent.textContent = '';
@@ -60,6 +72,6 @@ function setMessageSadFace(cookieComponent) {
 function setShinyGreyCookieAndReload() {
 	var randomColour = Math.floor(Math.random() * (139 - 1));
 	var randomShape = Math.floor(Math.random() * (9 - 1));
-	document.cookie = 'ShinyGreyCookieA=ts:' + Date.now() + '&c:' + randomColour + '&fa:'+ randomShape +';domain=shinygrey.com;samesite=lax;max-age=3153600000 path=/;'
+	document.cookie = 'ShinyGreyCookieA=ts:' + Date.now() + '&c:' + randomColour + '&fa:'+ randomShape +';domain=shinygrey.com;samesite=lax;max-age=3153600000 path=/;';
 	window.location.reload();
 }
