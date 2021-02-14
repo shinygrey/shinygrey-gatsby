@@ -101,27 +101,28 @@
 	}
 
 	a.sgc-nav-link:hover, a.sgc-nav-link.active{
-		background-color: #fff !important;
+		background-color: #fff;
 		text-decoration-style:none;
 		@apply sgt-no-underline;
 	}
 
 	#nav-bar-main > ul > li{
 		height: 60px;
-		@apply sgt-hidden;
-		@apply md:sgt-block;
 	}
 
 	#nav-bar-main.active > ul > li{
 		@apply sgt-block;
-		@apply md:sgt-block;
+	}
+
+	#nav-bar-main.active > ul > li > a > span{
+		opacity: 1;
 	}
 
 	button.shinygrey-nav-toggle {
 		position: relative;
 		background-color: transparent;
 		padding: 0;
-		height: 44px;
+		height: 60px;
 		width: 60px;
 		cursor: pointer;
 		z-index: 9999;
