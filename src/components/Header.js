@@ -54,7 +54,6 @@ function NavMenu({menu}) {
 			</li>);
 		})}
 		</ul>
-
 		<button
 			className={`hover:sgt-text-sgdark hover:sgt-bg-white sgt-text-sglight shinygrey-nav-toggle sgt-border-none sgt-bg-opacity-100 sgt-cursor-pointer sgc-nav-link ml-auto sgt-block md:sgt-hidden${(!navOpen ? '' : ' active')}`}
 			onClick={() => {setNavOpen(!navOpen)}}

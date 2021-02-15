@@ -7,17 +7,24 @@ export const query = graphql`
 query($id: String!) {
 	allWpPost(filter: { id: { eq: $id } }) {
 		nodes {
+			id
+			slug
 			title
 			content
+			categories { nodes { slug } }
 		}
 	}
 }`;
+// postId
 
-export default function BlogPost({ data, pageContext }) {
+export default function SinglePost({ data, pageContext }) {
 	const post = data.allWpPost.nodes[0];
+	const slug = post.categories.nodes[0].slug;
 	return (
-		<ShinyGreyLayout menu={pageContext.menu} title="Shiny Grey / Code">
-			<h1><i className="shinygrey-tag-code">Code</i> {post.title}</h1>
+		<ShinyGreyLayout menu={pageContext.menu} title={`Shiny Grey / ${slug}`}>
+			<h1 data-widt={typeof post.id} data-slug={post.slug}>
+				<i className={"shinygrey-tag-"+slug}>{slug}</i> {post.title}
+			</h1>
 			<div dangerouslySetInnerHTML={{ __html: post.content }} />
 		</ShinyGreyLayout>
 	);

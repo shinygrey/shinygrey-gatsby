@@ -17,8 +17,7 @@ query($slug: String!) {
 
 export default function Page({ data, pageContext }) {
 	const page = data.allWpPage.edges[0].node;
-	return(<ShinyGreyLayout menu={pageContext.menu}>
-		<title>{page.title}</title>
+	return(<ShinyGreyLayout menu={pageContext.menu} title={page.title}>
 		<div dangerouslySetInnerHTML={{ __html: page.content }} />
 	</ShinyGreyLayout>);
 }

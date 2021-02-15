@@ -38,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
 				},
 			});
 
-			const catTemplatePath = path.resolve(`./src/templates/${categorySlug}-post.js`);
+			const catTemplatePath = path.resolve(`./src/templates/single-post.js`);
 			const template = (
 				fs.existsSync(catTemplatePath)
 				? catTemplatePath

@@ -7,16 +7,24 @@ export const query = graphql`
 query($slug: String!) {
 	allWpCategory(filter: { slug: { eq: $slug } }) {
 		edges {
-		  node {
-			id
-			posts {
-			  nodes {id title slug content}
+			node {
+				id
+				posts {
+					nodes {
+						id
+						slug
+						title
+						content
+						categories { nodes { slug } }
+					}
+				}
 			}
-		  }
 		}
 		distinct(field: ancestors___nodes)
-	  }
+	}
 }`;
+
+// postId
 
 export default function PostsPage({ data, pageContext }) {
 	const categorySlug = pageContext.slug;

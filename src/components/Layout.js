@@ -16,7 +16,7 @@ export default function ShinyGreyLayout({ children, bodyClass, menu, title }) {
 	}
 
 	return(<Fragment>
-		{(!title ? <Fragment /> : <title>{title}</title>)}
+		{(!title ? <Fragment /> : <title>Shiny Grey | {title}</title>)}
 		<div
 			id={"GatsbyBody"}
 			className={

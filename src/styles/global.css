@@ -83,6 +83,7 @@
 		height: 60px;
 		-webkit-transition: height .35s ease;
 		transition: height .35s ease;
+		z-index: 999;
 	}
 
 	#nav-bar-main.active{
@@ -252,6 +253,7 @@
 	.fa-4x{margin-bottom:0.5rem;}
 
 	body::-webkit-scrollbar{
+		background-color:#CfDEF5;
 		/* must be present to enable scroll bar */
 	}
 
